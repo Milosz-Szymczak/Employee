@@ -70,7 +70,7 @@ class MultiSportControllerTest {
         doNothing().when(multiSportService).addMultiSport(any(MultiSport.class));
 
         // Act & Assert
-        mockMvc.perform(post("/api/multisport")
+        mockMvc.perform(post("/api/multisport/addMultiSport")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"packageName\":\"Fitness Plan A\"}"))
                 .andExpect(status().isCreated());
@@ -86,7 +86,7 @@ class MultiSportControllerTest {
         doNothing().when(multiSportService).updateMultiSport(1L, updatedMultiSport);
 
         // Act & Assert
-        mockMvc.perform(patch("/api/multisport/{id}", 1L)
+        mockMvc.perform(patch("/api/multisport/updateMultiSport/{id}", 1L)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"packageName\":\"Updated Fitness Plan\"}"))
                 .andExpect(status().isNoContent());

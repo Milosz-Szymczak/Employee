@@ -82,7 +82,7 @@ class EmployeeControllerTest {
 
         doNothing().when(employeeService).addEmployee(employee);
         // Act & Assert
-        mockMvc.perform(post("/api/employee")
+        mockMvc.perform(post("/api/employee/addEmployee")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"fullName\":\"Jack Smith\", \"lastMedicalExamDate\":\"2023-05-01\", \"bhpExamDate\":\"2023-05-15\", \"ppk\":true, \"remarks\":\"No remarks\"}"))
                 .andExpect(status().isCreated());
@@ -99,7 +99,7 @@ class EmployeeControllerTest {
         doNothing().when(employeeService).updateEmployee(id, employeeEdit);
 
         // Act & Assert
-        mockMvc.perform(patch("/api/employee/{id}", id)
+        mockMvc.perform(patch("/api/employee/updateEmployee/{id}", id)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"fullName\":\"Updated Name\"}"))
                 .andExpect(status().isNoContent());
@@ -113,7 +113,7 @@ class EmployeeControllerTest {
         doNothing().when(employeeService).deleteEmployee(anyLong());
 
         // Act & Assert
-        mockMvc.perform(delete("/api/employee/{id}", id))
+        mockMvc.perform(delete("/api/employee/deleteEmployee/{id}", id))
                 .andExpect(status().isNoContent());
     }
 
@@ -133,7 +133,7 @@ class EmployeeControllerTest {
         when(employeeService.findEmployeeByName(employeeName)).thenReturn(List.of(employee1));
 
         // Act & Assert
-        mockMvc.perform(get("/api/employee/{employeeName}", employeeName))
+        mockMvc.perform(get("/api/employee/findEmployee/{employeeName}", employeeName))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].fullName").value("Jack Smith"));
     }

@@ -72,7 +72,7 @@ class InsuranceControllerTest {
         doNothing().when(insuranceService).addInsurance(any(Insurance.class));
 
         // Act & Assert
-        mockMvc.perform(post("/api/insurance")
+        mockMvc.perform(post("/api/insurance/addInsurance")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"insuranceName\":\"Health Plan C\"}"))
                 .andExpect(status().isCreated());
@@ -85,7 +85,7 @@ class InsuranceControllerTest {
         doNothing().when(insuranceService).updateInsurance(anyLong(), any(Insurance.class));
 
         // Act & Assert
-        mockMvc.perform(patch("/api/insurance/{id}", id)
+        mockMvc.perform(patch("/api/insurance/updateInsurance/{id}", id)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"insuranceName\":\"Updated Health Plan\"}"))
                 .andExpect(status().isNoContent());
