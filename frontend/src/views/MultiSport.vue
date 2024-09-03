@@ -44,6 +44,13 @@
         </div>
       </div>
     </div>
+
+  <footer class="mt-auto">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2024 Copyright:
+      <a class="text-body" href="https://www.ambsoft.pl/">amb software IT</a>
+    </div>
+  </footer>
   </template>
   
   <script>
@@ -69,10 +76,6 @@
           .then(res => res.json())
           .then(data => {
             this.multisports = data;
-          })
-          .catch(error => {
-            console.error('Error fetching insurance records:', error);
-            alert('Failed to fetch insurance records. Please try again later.');
           });
       },
       deleteMultiSport(id) {
@@ -114,4 +117,5 @@
   .container {
     margin-top: 20px;
   }
+
   </style>
