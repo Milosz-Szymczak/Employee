@@ -48,10 +48,10 @@ services:
     volumes:
       - keycloakdb_data:/var/lib/postgresql/data
 
-  employee_server:
+  backend:
     build:
-      context: ./Employee_database
-    container_name: employee_server
+      context: ./backend
+    container_name: backend
     ports:
       - "8085:8085"
     depends_on:
@@ -65,10 +65,12 @@ services:
   frontend:
     build:
       context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
     ports:
       - "8080:8080"
     depends_on:
-      - employee_server
+      - backend
 
 
 volumes:
